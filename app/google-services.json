@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "857932462898",
+    "firebase_url": "https://myrickshawapp.firebaseio.com",
+    "project_id": "myrickshawapp",
+    "storage_bucket": "myrickshawapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857932462898:android:1401024dec688756",
+        "android_client_info": {
+          "package_name": "com.iiitd.apurupa.mcassignment.erickshawdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857932462898-n8u9r3i5b0nbmi3ehg6hhk3vtktae3i2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbDLx48WaoWSXzFCj4ty7iWOrhiPWE3zw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
