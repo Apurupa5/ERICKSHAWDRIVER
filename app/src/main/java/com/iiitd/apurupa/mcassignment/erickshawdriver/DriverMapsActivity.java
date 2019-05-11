@@ -11,10 +11,15 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -53,18 +58,21 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class DriverMapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private BroadcastReceiver broadcastReceiver;
     public static final String mypreference = "mypref";
     private String useremail;
-
+  int f=0;
     private ProgressDialog pDialog;
     private static String url_create_account = "http://192.168.58.165/mc/location.php";
     private static String url_get_count="http://192.168.58.165/mc/count.php";
     private static String url_update_details="http://192.168.58.165/mc/update.php";
     private ShowMessage toast=new ShowMessage();
+    private DrawerLayout mdrawerlayout;
+    private ActionBarDrawerToggle mactiontoggle;
+    private NavigationView mnavigationview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,10 +96,54 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
 
         if(!runtime_permissions())
             enable_service();
+        mdrawerlayout=(DrawerLayout)findViewById(R.id.drawerlayout);
+        mnavigationview=(NavigationView)findViewById(R.id.navigationview);
+        mactiontoggle=new ActionBarDrawerToggle(this,mdrawerlayout,R.string.open,R.string.close);
+        mdrawerlayout.addDrawerListener(mactiontoggle);
+        mactiontoggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mnavigationview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch(item.getItemId())
+                {
+                    case R.id.logout: toast.showmessage(getApplicationContext(),"Logout Clicked");
+                        SharedPreferences preferences = getSharedPreferences(mypreference,
+                                Context.MODE_PRIVATE);
+
+                        SharedPreferences.Editor edt = preferences.edit();
+                        edt.putBoolean("isloggedin",false);
+                        edt.apply();
+                        edt.commit();
+                        Intent i1=new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i1);
+                        break;
+                    case R.id.profile:
+
+                        Intent i2=new Intent(getApplicationContext(),ViewProfileActivity.class);
+                        startActivity(i2);
+                        break;
+                }
+                return false;
+            }
+        });
+
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(mactiontoggle.onOptionsItemSelected(item)){
 
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+
+//Updating Present Location of Driver
     @Override
     protected void onResume() {
         super.onResume();
@@ -107,11 +159,13 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
                     Log.d("Before Driver","GE");
                     Log.d("Driver", String.valueOf(intent.getExtras().getDouble("longitude")));
                     Log.d("After Driver","GE");
+               if(latitude!=0.0 && longitude!=0.0) {
+                   LatLng iiitd = new LatLng(latitude, longitude);
+                   mMap.addMarker(new MarkerOptions().position(iiitd).title("Marker in IIITD"));
+                   mMap.moveCamera(CameraUpdateFactory.newLatLng(iiitd));
+                   moveToCurrentLocation(iiitd);
+               }
 
-                    LatLng iiitd = new LatLng(latitude,longitude);
-                    mMap.addMarker(new MarkerOptions().position(iiitd).title("Marker in IIITD"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(iiitd));
-                    moveToCurrentLocation(iiitd);
                     new UpdateLocation().execute(useremail,String.valueOf(latitude),String.valueOf(longitude),"available");
                   //  mcoord.append("\n" +intent.getExtras().getDouble("latitude"));
 
@@ -144,7 +198,7 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-
+//Starting a Service
     private void enable_service() {
 
 
@@ -213,7 +267,7 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
             pDialog.setMessage("Updating..");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
-            pDialog.show();
+            //pDialog.show();
         }
 
         /**
@@ -229,6 +283,7 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
             double lng=Double.parseDouble(longitude);
             // Building Parameters
             String count = getCount(email);
+            Log.d("count",count);
             String finalurl="";
             if(count.equals("0"))
             {

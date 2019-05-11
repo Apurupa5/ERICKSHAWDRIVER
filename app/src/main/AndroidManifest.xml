@@ -12,19 +12,18 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,28 +38,41 @@
 
         <activity
             android:name=".DriverMapsActivity"
-            android:label="@string/title_activity_driver_maps"></activity>
+            android:configChanges="orientation|screenSize" />
+            android:label="@string/title_activity_driver_maps" />
+
         <service
             android:name=".GPSService"
             android:enabled="true"
             android:exported="true" />
-
-        <service
-            android:name=".FirebaseMessagingService">
+        <service android:name=".FirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".FirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-
-        <service
-            android:name=".FirebaseInstanceIDService">
+        <activity android:name=".NotificationActivity"  android:configChanges="orientation|screenSize"/>
+        <activity android:name=".SplashActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </service>
-
-
+        </activity>
+        <activity
+            android:name=".ViewProfileActivity"  android:configChanges="orientation|screenSize"
+            android:parentActivityName=".DriverMapsActivity" />
+        <activity
+            android:name=".StartRideActivity"
+            android:label="@string/title_activity_start_ride" />
+        <activity android:name=".RegisterActivity"  android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>

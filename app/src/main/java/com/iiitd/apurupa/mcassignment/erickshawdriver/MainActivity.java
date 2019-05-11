@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new LoginCheck().execute(email,password);
 
                 break;
-//            case R.id.signUpButton:
-//
-//                Intent I=new Intent(getApplicationContext(),RegisterActivity.class);
-//                startActivity(I);
-//                break;
+            case R.id.signUpButton:
+
+                Intent I=new Intent(getApplicationContext(),RegisterActivity.class);
+                startActivity(I);
+                break;
         }
     }
 
@@ -191,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 SharedPreferences.Editor edt = preferences.edit();
                                 edt.putString("email", email);
+                                edt.putBoolean("isloggedin",true);
                                 edt.apply();
                                 edt.commit();
                                 //register();

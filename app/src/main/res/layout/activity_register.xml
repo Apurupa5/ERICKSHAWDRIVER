@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/register"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.iiitd.apurupa.mcassignment.erickshawdriver.RegisterActivity">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/RegFullnameEditText"
+        android:background="@drawable/edit_text"
+        android:hint="Enter your Fullname"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="#817f7f"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+
+        android:layout_marginTop="53dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:id="@+id/RegEmailEditText"
+        android:hint="Enter Your Email ID"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="#817f7f"
+        android:layout_below="@+id/RegFullnameEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/RegFullnameEditText"
+        android:layout_alignEnd="@+id/RegFullnameEditText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:id="@+id/RegPasswordEditText"
+        android:hint="Enter Your Password"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="#817f7f"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/RegEmailEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/RegConfirmPasswordEditText"
+        android:hint="Confirm Your Password"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="#817f7f"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/RegPasswordEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/edit_text"
+        android:layout_alignParentEnd="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/RegPhonenoEditText"
+        android:layout_marginTop="10dp"
+        android:hint="Enter your Phone no"
+        android:background="@drawable/edit_text"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="#817f7f"
+        android:layout_below="@+id/RegConfirmPasswordEditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Register"
+        android:background="#f57846"
+        android:id="@+id/registeraccButton"
+        android:layout_below="@+id/RegLicenceEditText"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/RegLicenceEditText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Already Have an Account? Login Here"
+        android:id="@+id/RegAlloginButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_below="@+id/RegLicenceEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:text="Create an Account"
+        android:id="@+id/createaccounttextView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/RegLicenceEditText"
+        android:hint="Enter your Licence no"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="#817f7f"
+        android:visibility="invisible"
+        android:background="@drawable/edit_text"
+        android:layout_below="@+id/RegPhonenoEditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+</RelativeLayout>
+</ScrollView>
